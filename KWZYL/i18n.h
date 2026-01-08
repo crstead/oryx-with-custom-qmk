@@ -1,0 +1,10 @@
+#define FR_UGRV KC_QUOT
+#define DE_AE KC_QUOT
+#define FR_AGRV KC_0
+#define DE_SS KC_MINS
+#define FR_CCED KC_9
+#define DE_UE KC_LBRC
+#define ES_NTIL KC_SCLN
+#define FR_EACU KC_2
+#define FR_EGRV KC_7
+#define DE_OE KC_SCLN
