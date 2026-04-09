@@ -552,6 +552,14 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  // Get the layer associated with the current key.
+  const uint8_t layer = read_source_layers_cache(record->event.key);
+
+  if (layer == 1 && record->event.pressed) {
+    clear_weak_mods();  // Clear any residual weak shift mod from the previous key.
+    send_keyboard_report();
+  }
+
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX:
     // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
