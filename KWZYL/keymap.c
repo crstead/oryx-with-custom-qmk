@@ -12,6 +12,7 @@ enum custom_keycodes {
   ST_MACRO_2,
   ST_MACRO_3,
   ST_MACRO_4,
+  ST_MACRO_5,
 };
 
 
@@ -31,7 +32,7 @@ enum tap_dance_codes {
   DANCE_11,
 };
 
-#define DUAL_FUNC_0 LT(13, KC_F20)
+#define DUAL_FUNC_0 LT(6, KC_L)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -43,9 +44,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_NO,          KC_NO,          KC_LPRN,        KC_RPRN,        KC_COMMA,       KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
-    KC_NO,          KC_LBRC,        KC_LCBR,        KC_RCBR,        KC_RBRC,        KC_QUES,                                        KC_NO,          KC_GRAVE,       KC_DQUO,        KC_SPACE,       KC_BSPC,        KC_NO,          
-    KC_HASH,        KC_CIRC,        KC_EXLM,        KC_EQUAL,       DUAL_FUNC_0,    KC_ASTR,                                        KC_AT,          MT(MOD_RCTL, KC_SCLN),KC_EQUAL,       KC_COLN,        ST_MACRO_2,     KC_NO,          
-    KC_TILD,        KC_LABK,        KC_MINUS,       KC_PIPE,        KC_RABK,        KC_SLASH,                                       KC_BSLS,        KC_PERC,        KC_AMPR,        KC_PLUS,        ST_MACRO_3,     KC_NO,          
+    KC_NO,          KC_LBRC,        KC_LCBR,        KC_RCBR,        KC_RBRC,        KC_QUES,                                        KC_NO,          KC_GRAVE,       KC_DQUO,        KC_QUOTE,       KC_SPACE,       KC_NO,          
+    KC_HASH,        KC_CIRC,        KC_EXLM,        KC_EQUAL,       DUAL_FUNC_0,    KC_ASTR,                                        KC_AT,          MT(MOD_RCTL, KC_SCLN),KC_COLN,        ST_MACRO_2,     ST_MACRO_3,     KC_NO,          
+    KC_TILD,        KC_LABK,        KC_MINUS,       KC_PIPE,        KC_RABK,        KC_SLASH,                                       KC_BSLS,        KC_PERC,        KC_AMPR,        KC_PLUS,        ST_MACRO_4,     KC_NO,          
                                                     KC_DOT,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_DOT
   ),
   [2] = LAYOUT_voyager(
@@ -77,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_NO,          KC_NO,                                          KC_MEH,         KC_RIGHT_GUI
   ),
   [6] = LAYOUT_voyager(
-    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          ST_MACRO_4,     KC_NO,          KC_SYSTEM_POWER,
+    KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          ST_MACRO_5,     KC_NO,          KC_SYSTEM_POWER,
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_BRIGHTNESS_UP,KC_BRIGHTNESS_DOWN,KC_PSCR,        KC_NO,          KC_SYSTEM_SLEEP,
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_AUDIO_MUTE,  KC_NO,          KC_NO,          
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
@@ -589,15 +590,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_SPACE)SS_DELAY(100)  SS_TAP(X_MINUS)SS_DELAY(100)  SS_TAP(X_SPACE));
+      SEND_STRING(SS_RSFT(SS_TAP(X_SCLN))SS_DELAY(10)  SS_TAP(X_EQUAL));
     }
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_SPACE)SS_DELAY(100)  SS_RSFT(SS_TAP(X_EQUAL))SS_DELAY(100)  SS_TAP(X_SPACE));
+      SEND_STRING(SS_TAP(X_SPACE)SS_DELAY(10)  SS_TAP(X_MINUS)SS_DELAY(10)  SS_TAP(X_SPACE));
     }
     break;
     case ST_MACRO_4:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_SPACE)SS_DELAY(10)  SS_RSFT(SS_TAP(X_EQUAL))SS_DELAY(10)  SS_TAP(X_SPACE));
+    }
+    break;
+    case ST_MACRO_5:
     if (record->event.pressed) {
       SEND_STRING(SS_RALT(SS_RCTL(SS_TAP(X_DELETE))));
     }
