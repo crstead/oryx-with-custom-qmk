@@ -34,7 +34,7 @@ enum tap_dance_codes {
   DANCE_11,
 };
 
-#define DUAL_FUNC_0 LT(7, KC_F18)
+#define DUAL_FUNC_0 LT(14, KC_K)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          LCTL(LSFT(KC_TAB)),KC_PGDN,        KC_PAGE_UP,     LCTL(KC_TAB),   KC_NO,          
     KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT, KC_LEFT_CTRL,   KC_NO,                                          KC_NO,          KC_LEFT,        KC_DOWN,        KC_UP,          KC_RIGHT,       KC_NO,          
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          RALT(KC_TAB),   KC_END,         KC_HOME,        RALT(RSFT(KC_TAB)),KC_NO,          
-                                                    KC_LEFT_SHIFT,  KC_NO,                                          KC_NO,          KC_NO
+                                                    KC_LEFT_SHIFT,  LSFT(KC_LEFT_CTRL),                                KC_NO,          KC_NO
   ),
   [4] = LAYOUT_voyager(
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          
